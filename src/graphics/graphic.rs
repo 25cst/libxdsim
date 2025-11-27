@@ -1,6 +1,13 @@
 use crate::graphics::element::Element;
 
 pub struct Graphic {
-    version: u32,
     elements: Vec<Element>
+}
+
+impl Default for Graphic {
+    fn default() -> Self {
+        Self {
+            elements: Vec::new()
+        }
+    }
 }

@@ -1,9 +1,10 @@
-use crate::graphics::Graphic;
+use crate::graphics::*;
+use super::gate_definition::GateDefinition;
 
 pub trait Gate<I, O> {
-    fn tick(input: I) -> O; // TODO
+    fn tick(input: I) -> O;
 
-    fn draw(direction: (), dimension: ()) -> Graphic;
+    fn draw(direction: Direction, size: Vec2) -> Graphic;
 
-    // fn definition()
+    fn definition() -> GateDefinition;
 }

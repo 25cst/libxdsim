@@ -1,4 +1,6 @@
-use crate::{component::gate_definition::GateDefinition, graphics::*};
+use crate::{
+    app_state::PropertiesContainer, component::gate_definition::GateDefinition, graphics::*,
+};
 
 pub trait Gate {
     /// - &mut self: the gate is allowed to change its state when received an input

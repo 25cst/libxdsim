@@ -3,7 +3,7 @@ use crate::graphics::style::*;
 pub enum Element {
     Line {
         points: Vec<(f64, f64)>,
-        stroke: StrokeStyle
+        stroke: StrokeStyle,
     },
     Rect {
         pos: (f64, f64),

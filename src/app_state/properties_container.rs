@@ -3,7 +3,7 @@ use std::{
     fmt::{Display, Write},
 };
 
-use crate::graphics::{Menu, MenuInputValue};
+use crate::app_state::{Menu, MenuInputValue};
 
 pub trait PropertiesContainer {
     /// get the display layout of the menu

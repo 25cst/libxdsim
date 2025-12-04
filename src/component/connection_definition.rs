@@ -2,7 +2,7 @@
 pub struct ConnectionDefinition {
     /// Definition schema version number
     version: u32,
-    
+
     /// Data type the connection carries
     data_type: &'static str,
 

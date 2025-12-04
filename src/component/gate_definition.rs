@@ -28,5 +28,5 @@ pub struct GateDefinition {
 pub struct GateIOEntry {
     name: String,
     data_type: &'static str,
-    position: Vec2
+    position: Vec2,
 }

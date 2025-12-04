@@ -1,7 +1,7 @@
 use crate::graphics::element::Element;
 
 pub struct Graphic {
-    elements: Vec<Element>
+    elements: Vec<Element>,
 }
 
 // TODO: if we implement this, would it make it very hard
@@ -9,7 +9,7 @@ pub struct Graphic {
 impl Default for Graphic {
     fn default() -> Self {
         Self {
-            elements: Vec::new()
+            elements: Vec::new(),
         }
     }
 }

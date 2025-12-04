@@ -15,6 +15,10 @@ pub struct GateDefinition {
     /// The visual bounding box (dimension) of the gate
     /// The bottom left corner is (0, 0), top right corner is (width, height)
     bounding_box: Dimension,
+
+    /// Gate identifier: the unique identifier for the gate type
+    /// filled in by macro
+    identifier: &'static str, // e.g. package_name-0.1.0::and
 }
 
 /// Representing a single input or output connection that the gate take.

@@ -1,4 +1,4 @@
-use crate::graphics::Dimension;
+use crate::graphics::Vec2;
 
 /// TODO: this will need to have a stable byte structure
 /// probably need to tag repr(C) or something
@@ -14,7 +14,7 @@ pub struct GateDefinition {
 
     /// The visual bounding box (dimension) of the gate
     /// The bottom left corner is (0, 0), top right corner is (width, height)
-    bounding_box: Dimension,
+    bounding_box: Vec2,
 
     /// Gate identifier: the unique identifier for the gate type
     /// filled in by macro

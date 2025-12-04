@@ -1,4 +1,4 @@
-use crate::graphics::*;
+use crate::{component::gate_definition::GateDefinition, graphics::*};
 
 pub trait Gate {
     /// - &mut self: the gate is allowed to change its state when received an input
@@ -14,14 +14,7 @@ pub trait Gate {
     // DEFINITION: Returns gate definition
     // This takes a self reference because the definition may depend on options (which is stored
     // as state)
-    // below are possible implementations
-    // 1. allow access to a self reference, but this will also allow it to access its state
-    //    but definition should not depend on state
-    // fn definition(&self) -> GateDefinition;
-    //
-    // 2. definition should only depend on the options, so pass in only the option as bytes and do
-    //    the transmut trick on it again
-    // fn definition(option_bytes: *const u8) -> GateDefinition;
+    fn definition(&self) -> GateDefinition;
 
     // TODO: get_option, set_options, etc. How do we do this without making a complete mess?
 }
@@ -29,7 +22,7 @@ pub trait Gate {
 /// A single gate tick request
 pub struct GateTickRequest {
     /// Inputs to the gate
-    inputs: Vec<*const u8>
+    inputs: Vec<*const u8>,
 }
 
 /// A single gate draw request

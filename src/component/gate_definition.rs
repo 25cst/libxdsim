@@ -24,10 +24,9 @@ pub struct GateDefinition {
 /// Representing a single input or output connection that the gate take.
 /// - name: the unique name of the input/output
 /// - data_type: the type name of the input/output
-/// - (x_pos, y_pos): a finite f64 that is on the bounding box
+/// - position: a point that is on the bounding box
 pub struct GateIOEntry {
     name: String,
     data_type: &'static str,
-    x_pos: f64,
-    y_pos: f64,
+    position: Vec2
 }

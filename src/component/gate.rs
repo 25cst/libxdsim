@@ -16,7 +16,13 @@ pub trait Gate {
     // as state)
     fn definition(&self) -> GateDefinition;
 
-    // TODO: get_option, set_options, etc. How do we do this without making a complete mess?
+    /// Get the property container
+    /// this is to be implemented by macro
+    fn properties_container(&self) -> &dyn PropertiesContainer;
+
+    /// Get the property container (mutable)
+    /// this is to be implemented by macro
+    fn properties_container_mut(&self) -> &mut dyn PropertiesContainer;
 }
 
 /// A single gate tick request

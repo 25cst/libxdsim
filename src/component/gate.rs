@@ -4,7 +4,7 @@ pub trait Gate {
     /// - &mut self: the gate is allowed to change its state when received an input
     /// - input: list of pointers to inputs in the order they are defined in definition()
     /// - output: list of pointers to outputs in the order they are defined in definition()
-    fn tick(&mut self, input: &[*mut u8]) -> Vec<*mut u8>;
+    fn tick(&mut self, input: &[*const u8]) -> Vec<*const u8>;
 
     /// Produce a graphic of the gate
     // request will be a reference, because the same gate will be drawn many times

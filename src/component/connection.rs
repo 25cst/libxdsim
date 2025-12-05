@@ -7,7 +7,7 @@ use crate::{
 /// A connection that can carry a value
 /// It may (or not) necessarily be connected to anything
 pub trait Connection {
-    /// Produce a graphic of the connection. 
+    /// Produce a graphic of the connection.
     /// Request is a reference because it doesn't really make sense
     /// for the draw function to take ownership of anything.
     fn draw(&self, request: &ConnectionDrawRequest) -> Graphic;
@@ -22,6 +22,18 @@ pub trait Connection {
     /// Get the property container (mutable)
     /// this is to be implemented by macro
     fn properties_container_mut(&self) -> &mut dyn PropertiesContainer;
+
+    /// Serialize connection into bytes
+    /// macro will remove the &self from the argument list
+    fn serialize(&self, data: *const u8) -> Vec<u8>;
+
+    /// Implemented by macro
+    /// serializes the data
+    fn serialize_data(&self, data: *const u8) -> Vec<u8>;
+
+    /// Implemented by macro
+    /// deserializes the data
+    fn deserialize_data(&self, data: Vec<u8>) -> *const u8;
 }
 
 /// Details of a request to draw a `Connection`

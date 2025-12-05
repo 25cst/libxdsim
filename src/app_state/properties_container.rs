@@ -20,6 +20,11 @@ pub trait PropertiesContainer {
         id: &str,
         value: MenuInputValue,
     ) -> Result<(), PropertiesContainerSetError>;
+
+    /// serializes self to a byte array
+    /// macro should also impl a top level function called
+    /// deserialize_gate_option
+    fn serialize(&self) -> Vec<u8>;
 }
 
 #[derive(Debug)]

@@ -7,7 +7,7 @@ use crate::{
 /// A connection that can carry a value
 /// It may (or not) necessarily be connected to anything
 pub trait Connection {
-    /// Produce a graphic of the connection. 
+    /// Produce a graphic of the connection.
     /// Request is a reference because it doesn't really make sense
     /// for the draw function to take ownership of anything.
     fn draw(&self, request: &ConnectionDrawRequest) -> Graphic;

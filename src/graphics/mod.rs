@@ -6,5 +6,5 @@ mod graphic;
 pub use graphic::*;
 mod common;
 mod colour;
-
+pub use colour::*;
 pub use common::*;

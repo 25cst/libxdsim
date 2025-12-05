@@ -45,8 +45,13 @@ pub enum Colour {
     },
 
     /// A named colour from a palette
+    ///
+    /// A palette is a customisable set of colours
+    /// multiple gates/connections can share the same palette
     Named {
+        /// Name of the palette
         palette: &'static str,
+        /// Name of the colour within the palette
         name: &'static str,
     },
 }

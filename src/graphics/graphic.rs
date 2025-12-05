@@ -8,6 +8,14 @@ pub struct Graphic {
     elements: Vec<Element>,
 }
 
+impl Graphic {
+    pub fn from_vec(elements: Vec<Element>) -> Self {
+        Self {
+            elements
+        }
+    }
+}
+
 impl Default for Graphic {
     fn default() -> Self {
         Self {

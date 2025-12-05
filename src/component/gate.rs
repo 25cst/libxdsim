@@ -30,13 +30,13 @@ pub trait Gate {
 /// A single gate tick request
 pub struct GateTickRequest {
     /// Inputs to the gate
-    inputs: Vec<*const ()>,
+    pub inputs: Vec<*const ()>,
 }
 
 /// A single gate draw request
 pub struct GateDrawRequest {
     /// One of the four the gate is facing (rotation)
-    direction: Direction,
+    pub direction: Direction,
     /// The size of the bounding box previously provided
-    dimension: Vec2,
+    pub dimension: Vec2,
 }

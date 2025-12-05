@@ -25,6 +25,9 @@ pub trait Gate {
     /// Get the property container (mutable)
     /// this is to be implemented by macro
     fn properties_container_mut(&mut self) -> &mut dyn PropertiesContainer;
+
+    /// Serialize gate into bytes
+    fn serialize(&self) -> Vec<u8>;
 }
 
 /// A single gate tick request

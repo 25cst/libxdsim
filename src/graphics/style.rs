@@ -1,9 +1,9 @@
-use crate::graphics::Colour;
+use crate::graphics::colour::Colour;
 
 pub struct StrokeStyle {
-    colour: Colour,
+    pub colour: Colour,
 }
 
 pub struct FillStyle {
-    colour: Colour,
+    pub colour: Colour,
 }

@@ -21,28 +21,13 @@ pub trait Connection {
 
     /// Get the property container (mutable)
     /// this is to be implemented by macro
-    fn properties_container_mut(&self) -> &mut dyn PropertiesContainer;
-
-    /// Serialize connection into bytes
-    /// macro will remove the &self from the argument list
-    fn serialize(&self, data: *const u8) -> Vec<u8>;
-
-    /// Implemented by macro
-    /// serializes the data
-    fn serialize_data(&self, data: *const u8) -> Vec<u8>;
-
-    /// Implemented by macro
-    /// deserializes the data
-    fn deserialize_data(&self, bytes: Vec<u8>) -> *const u8;
-
-    /// Call free() on the data
-    fn drop_data(&self, data: *const u8);
+    fn properties_container_mut(&mut self) -> &mut dyn PropertiesContainer;
 }
 
 /// Details of a request to draw a `Connection`
 pub struct ConnectionDrawRequest {
     /// Path the connection takes
-    path: ConnectionPath,
+    pub path: ConnectionPath,
     /// Current value in the connection
-    data: *const u8,
+    pub data: *const (),
 }

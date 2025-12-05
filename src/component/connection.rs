@@ -29,5 +29,5 @@ pub struct ConnectionDrawRequest {
     /// Path the connection takes
     path: ConnectionPath,
     /// Current value in the connection
-    data: *const u8,
+    data: *const (),
 }

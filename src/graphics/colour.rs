@@ -1,7 +1,7 @@
 type ColourRGB = (u8, u8, u8);
 
 /// Enum representing the colour options available for gates
-#[derive(Debug, Copy)]
+#[derive(Debug, Clone, Copy)]
 pub enum Colour {
     /// The primary colour of the gates (in a light theme, this would be black)
     Foreground,

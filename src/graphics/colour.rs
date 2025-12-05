@@ -28,6 +28,7 @@ pub enum Colour {
     Red,
     White,
     Yellow,
+    Transparent,
 
     /// Arbitrary RGBA colour
     Rgba {

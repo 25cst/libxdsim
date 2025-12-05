@@ -27,7 +27,7 @@ pub trait Connection {
 /// Details of a request to draw a `Connection`
 pub struct ConnectionDrawRequest {
     /// Path the connection takes
-    path: ConnectionPath,
+    pub path: ConnectionPath,
     /// Current value in the connection
-    data: *const u8,
+    pub data: *const u8,
 }

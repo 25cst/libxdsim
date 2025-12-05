@@ -1,10 +1,10 @@
 pub struct Menu {
-    items: Vec<MenuItem>,
+    pub items: Vec<MenuItem>,
 }
 
 pub struct MenuItem {
-    tooltip: Option<String>,
-    item_type: MenuItemVariant,
+    pub tooltip: Option<String>,
+    pub item_type: MenuItemVariant,
 }
 
 pub enum MenuItemVariant {

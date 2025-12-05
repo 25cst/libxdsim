@@ -1,9 +1,9 @@
 use crate::graphics::Colour;
 
 pub struct StrokeStyle {
-    colour: Colour,
+    pub colour: Colour,
 }
 
 pub struct FillStyle {
-    colour: Colour,
+    pub colour: Colour,
 }

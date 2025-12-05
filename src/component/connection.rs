@@ -21,7 +21,7 @@ pub trait Connection {
 
     /// Get the property container (mutable)
     /// this is to be implemented by macro
-    fn properties_container_mut(&self) -> &mut dyn PropertiesContainer;
+    fn properties_container_mut(&mut self) -> &mut dyn PropertiesContainer;
 }
 
 /// Details of a request to draw a `Connection`

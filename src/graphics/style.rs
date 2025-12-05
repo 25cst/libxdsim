@@ -1,4 +1,4 @@
-use crate::graphics::Colour;
+use crate::graphics::colour::Colour;
 
 pub struct StrokeStyle {
     pub colour: Colour,

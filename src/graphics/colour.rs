@@ -29,18 +29,11 @@ pub enum Colour {
     White,
     Yellow,
 
-    /// Arbitrary RGB colour
-    Rgb {
-        r: u8,
-        g: u8,
-        b: u8,
-    },
-
     /// Arbitrary RGBA colour
     Rgba {
-        r: u8,
-        g: u8,
-        b: u8,
+        r: f32,
+        g: f32,
+        b: f32,
         a: f32,
     },
 

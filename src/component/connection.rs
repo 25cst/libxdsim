@@ -33,7 +33,10 @@ pub trait Connection {
 
     /// Implemented by macro
     /// deserializes the data
-    fn deserialize_data(&self, data: Vec<u8>) -> *const u8;
+    fn deserialize_data(&self, bytes: Vec<u8>) -> *const u8;
+
+    /// Call free() on the data
+    fn drop_data(&self, data: *const u8);
 }
 
 /// Details of a request to draw a `Connection`

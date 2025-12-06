@@ -33,6 +33,7 @@ jobs:
     #   run: cargo test --verbose
   build-dummy-repos:
     strategy:
+      fail-fast: false  # Gives more info (e.g. if only nightly fails to compile)
       matrix:
         rust-channel:
         - stable

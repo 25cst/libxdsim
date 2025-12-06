@@ -58,15 +58,16 @@ jobs:
         run: |
           mkdir ~/repo-to-build
           git clone https://github.com/${{ matrix.repo }}.git ~/repo-to-build
-          # Calculate sed-safe escaped workspace value (i.e. / -> \/ )
-          ghworkspace=$(echo '${{ github.workspace }}' | sed 's/\//\\\//g')
+          # Calculate sed-safe escaped workspace value (i.e. / -> \/ ), then escape backslashes twice (\ -> \\\\) as it's going to be in TOML through sed
+          ghworkspace=$(echo '${{ github.workspace }}' | sed 's/\//\\\//g' | sed 's/\\/\\\\\\\\/g')
           # Patch Cargo.toml to use the currently checked-out version
           sed "s/GITHUB-WORKSPACE-PATH/$ghworkspace/g" ./.github/workflows/patch-component-cargo.toml >> ~/repo-to-build/Cargo.toml
 
           ## <Debugging>
           cat  ~/repo-to-build/Cargo.toml
           echo '${{ github.workspace }}'
-          ls ~/repo-to-build -la
+          echo "$ghworkspace"
+          ls -l -a ~/repo-to-build
           ## </Debugging>
 
           # Cargo.toml should never have been committed for non-binary crates, we remove it

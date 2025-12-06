@@ -1,0 +1,6 @@
+
+# ---- PATCH ----
+# newline is required at the top of the file in case 
+# Cargo.toml doesn't end with a newline
+[patch."https://github.com/25cst/libxdsim"]
+libxdsim = { path = 'GITHUB-WORKSPACE-PATH' }

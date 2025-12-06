@@ -11,10 +11,20 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        rust-channel:
+        - stable
+        - nightly
+        os:
+        - ubuntu-latest
+        - windows-latest
+        - macos-latest
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
+    - name: Setup Rust ${{ matrix.rust-channel }}
+      run: rustup override set ${{ matrix.rust-channel }}
     - name: Build
       run: cargo build --verbose
     # No tests right now

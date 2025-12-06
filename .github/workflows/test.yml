@@ -62,6 +62,13 @@ jobs:
           ghworkspace=$(echo '${{ github.workflow }}' | sed 's/\//\\\//g')
           # Patch Cargo.toml to use the currently checked-out version
           sed "s/GITHUB-WORKSPACE-PATH/$ghworkspace/g" ./.github/workflows/patch-component-cargo.toml >> ~/repo-to-build/Cargo.toml
+
+          ## <Debugging>
+          cat  ~/repo-to-build/Cargo.toml
+          echo '${{ github.workflow }}'
+          ls ~/repo-to-build -la
+          ## </Debugging>
+
           # Cargo.toml should never have been committed for non-binary crates, we remove it
           rm -f ~/repo-to-build/Cargo.lock
       - name: Build ${{ matrix.repo }}

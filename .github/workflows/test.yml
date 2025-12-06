@@ -58,8 +58,10 @@ jobs:
         run: |
           mkdir ~/repo-to-build
           git clone https://github.com/${{ matrix.repo }}.git ~/repo-to-build
+          # Calculate sed-safe escaped workspace value (i.e. / -> \/ )
+          ghworkspace=$(echo '${{ github.workflow }}' | sed 's/\//\\\//g')
           # Patch Cargo.toml to use the currently checked-out version
-          sed 's/GITHUB-WORKSPACE-PATH/${{ github.workspace }}}/g' ./.github/workflows/patch-component-cargo.toml >> ~/repo-to-build/Cargo.toml
+          sed 's/GITHUB-WORKSPACE-PATH/$ghworkspace/g' ./.github/workflows/patch-component-cargo.toml >> ~/repo-to-build/Cargo.toml
           # Cargo.toml should never have been committed for non-binary crates, we remove it
           rm -f ~/repo-to-build/Cargo.lock
       - name: Build ${{ matrix.repo }}

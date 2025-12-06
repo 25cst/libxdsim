@@ -13,6 +13,7 @@ env:
 jobs:
   build-libxdsim:
     strategy:
+      fail-fast: false  # Gives more info (e.g. if only nightly fails to compile)
       matrix:
         rust-channel:
         - stable
@@ -32,6 +33,7 @@ jobs:
     # No tests right now
     # - name: Run tests
     #   run: cargo test --verbose
+
   build-dummy-repos:
     strategy:
       fail-fast: false  # Gives more info (e.g. if only nightly fails to compile)

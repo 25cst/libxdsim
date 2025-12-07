@@ -24,13 +24,13 @@ pub trait PropertiesContainer {
     /// serializes self to a byte array
     /// macro should also impl a top level function called
     /// deserialize_gate_option
-    fn serialize(&self) -> Vec<u8>;
+    fn serialize(&self) -> Box<[u8]>;
 }
 
 #[derive(Debug)]
 pub enum PropertiesContainerSetError {
     PropertyDoesNotExist,
-    Invalid { reason: String },
+    Invalid { reason: Box<str> },
 }
 
 impl Display for PropertiesContainerSetError {

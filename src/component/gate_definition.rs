@@ -18,7 +18,7 @@ pub struct GateDefinition {
 
     /// Gate identifier: the unique identifier for the gate type
     /// filled in by macro
-    pub identifier: &'static str, // e.g. package_name-0.1.0::and
+    pub identifier: (&'static str, &'static str, u16, u16), // e.g. (package_name, gate-name, semver major, semver minor)
 }
 
 /// Representing a single input or output connection that the gate take.
@@ -27,6 +27,6 @@ pub struct GateDefinition {
 /// - position: a point that is on the bounding box
 pub struct GateIOEntry {
     pub name: Box<str>,
-    pub data_type: &'static str,
+    pub data_type: (&'static str, &'static str, u16, u16), // e.g. (package_name, gate-name, semver major, semver minor)
     pub position: Vec2,
 }

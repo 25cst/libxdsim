@@ -1,0 +1,71 @@
+name: Test code
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:  # Allow launching it manually on any branch
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-libxdsim:
+    strategy:
+      fail-fast: false  # Gives more info (e.g. if only nightly fails to compile)
+      matrix:
+        rust-channel:
+        - stable
+        - nightly
+        os:
+        - ubuntu-latest
+        - windows-latest
+        - macos-latest
+    runs-on: ${{ matrix.os }}
+    name: Build libxdsim (${{ matrix.os }}, Rust ${{ matrix.rust-channel }})
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Rust ${{ matrix.rust-channel }}
+      run: rustup override set ${{ matrix.rust-channel }}
+    - name: Build libxdsim
+      run: cargo build --verbose
+    # No tests right now
+    # - name: Run tests
+    #   run: cargo test --verbose
+
+  build-dummy-repos:
+    strategy:
+      fail-fast: false  # Gives more info (e.g. if only nightly fails to compile)
+      matrix:
+        rust-channel:
+        - stable
+        - nightly
+        os:
+        - ubuntu-latest
+        - windows-latest
+        - macos-latest
+        repo:
+        - 25cst/xdsim-dummies-type
+        - 25cst/xdsim-dummy-t-flip-flop-gate
+    runs-on: ${{ matrix.os }}
+    name: Build ${{ matrix.repo }} (${{ matrix.os }}, Rust ${{ matrix.rust-channel }})
+    defaults:
+      run:
+        shell: bash  # Use Git Bash on Windows as well
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Rust ${{ matrix.rust-channel }}
+        run: rustup override set ${{ matrix.rust-channel }}
+      - name: Setup ${{ matrix.repo }} for use with this libxdsim
+        run: |
+          mkdir ~/repo-to-build
+          git clone https://github.com/${{ matrix.repo }}.git ~/repo-to-build
+          # escape backslashes twice (\ -> \\\\) as it's going to be in TOML through sed, then escape / (due to passing thru sed) (i.e. / -> \/ ), then 
+          ghworkspace=$(echo '${{ github.workspace }}' | sed 's/\\/\\\\\\\\/g' | sed 's/\//\\\//g')
+          # Patch Cargo.toml to use the currently checked-out version
+          sed "s/GITHUB-WORKSPACE-PATH/$ghworkspace/g" ./.github/workflows/patch-component-cargo.toml >> ~/repo-to-build/Cargo.toml
+          # Cargo.toml should never have been committed for non-binary crates, we remove it
+          rm -f ~/repo-to-build/Cargo.lock
+      - name: Build ${{ matrix.repo }}
+        run: cd ~/repo-to-build && cargo build --verbose

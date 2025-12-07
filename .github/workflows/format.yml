@@ -1,0 +1,22 @@
+name: Format code
+
+on:
+  workflow_dispatch:  # Allow launching it manually on any branch
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    name: Format code
+    steps:
+    - uses: actions/checkout@v4
+    # We're just running cargo fmt so it's fine to use the default already-installed Rust
+    - name: Run cargo format
+      run: cargo fmt
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "[bot] Format code"
+        commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"

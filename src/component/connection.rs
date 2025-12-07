@@ -23,20 +23,9 @@ pub trait Connection {
     /// this is to be implemented by macro
     fn properties_container_mut(&mut self) -> &mut dyn PropertiesContainer;
 
-        /// Serialize connection into bytes
+    /// Serialize connection into bytes
     /// macro will remove the &self from the argument list
     fn serialize(&self, data: *const u8) -> Box<[u8]>;
-
-    /// Implemented by macro
-    /// serializes the data
-    fn serialize_data(&self, data: *const u8) -> Box<[u8]>;
-
-    /// Implemented by macro
-    /// deserializes the data
-    fn deserialize_data(&self, bytes: Box<[u8]>) -> *const u8;
-
-    /// Call free() on the data
-    fn drop_data(&self, data: *const u8);
 }
 
 /// Details of a request to draw a `Connection`

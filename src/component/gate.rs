@@ -6,7 +6,7 @@ pub trait Gate {
     /// - &mut self: the gate is allowed to change its state when received an input
     /// - input: list of pointers to inputs in the order they are defined in definition()
     /// - output: list of pointers to outputs in the order they are defined in definition()
-    fn tick(&mut self, request: GateTickRequest) -> Vec<*const ()>;
+    fn tick(&mut self, request: GateTickRequest) -> Box<[*const ()]>;
 
     /// Produce a graphic of the gate
     // request will be a reference, because the same gate will be drawn many times
@@ -27,13 +27,13 @@ pub trait Gate {
     fn properties_container_mut(&mut self) -> &mut dyn PropertiesContainer;
 
     /// Serialize gate into bytes
-    fn serialize(&self) -> Vec<u8>;
+    fn serialize(&self) -> Box<[u8]>;
 }
 
 /// A single gate tick request
 pub struct GateTickRequest {
     /// Inputs to the gate
-    pub inputs: Vec<*const ()>,
+    pub inputs: Box<[*const ()]>,
 }
 
 /// A single gate draw request

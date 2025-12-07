@@ -8,9 +8,9 @@ pub struct GateDefinition {
     pub version: u32,
 
     /// The ordered input that the gate takes
-    pub inputs: Vec<GateIOEntry>,
+    pub inputs: Box<[GateIOEntry]>,
     /// The ordered output that the gate produces
-    pub outputs: Vec<GateIOEntry>,
+    pub outputs: Box<[GateIOEntry]>,
 
     /// The visual bounding box (dimension) of the gate
     /// The bottom left corner is (0, 0), top right corner is (width, height)
@@ -26,7 +26,7 @@ pub struct GateDefinition {
 /// - data_type: the type name of the input/output
 /// - position: a point that is on the bounding box
 pub struct GateIOEntry {
-    pub name: String,
+    pub name: Box<str>,
     pub data_type: (&'static str, &'static str, u16, u16), // e.g. (package_name, gate-name, semver major, semver minor)
     pub position: Vec2,
 }

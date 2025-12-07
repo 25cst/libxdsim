@@ -1,16 +1,24 @@
 pub struct Menu {
-    pub items: Vec<MenuItem>,
+    pub items: Box<[MenuItem]>,
 }
 
 pub struct MenuItem {
-    pub tooltip: Option<String>,
+    pub tooltip: Option<Box<str>>,
     pub item_type: MenuItemVariant,
 }
 
 pub enum MenuItemVariant {
-    Foldable { title: String, items: Vec<MenuItem> },
-    Text { content: String },
-    Input { id: String, input_type: MenuInput },
+    Foldable {
+        title: Box<str>,
+        items: Box<[MenuItem]>,
+    },
+    Text {
+        content: Box<str>,
+    },
+    Input {
+        id: Box<str>,
+        input_type: MenuInput,
+    },
 }
 
 pub enum MenuInput {
@@ -34,14 +42,14 @@ pub enum MenuInput {
 
 pub enum MenuInputStringStyle {
     Inline {
-        placeholder: String,
+        placeholder: Box<str>,
     },
     Multiline {
         max_lines: Option<u32>,
-        placeholder: String,
+        placeholder: Box<str>,
     },
     Dropdown {
-        options: Vec<String>,
+        options: Box<[Box<str>]>,
     },
 }
 
@@ -62,7 +70,7 @@ pub enum MenuInputBooleanStyle {
 }
 
 pub enum MenuInputValue {
-    String(String),
+    String(Box<str>),
     Integer(i64),
     Float(f64),
     Boolean(bool),

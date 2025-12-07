@@ -5,13 +5,13 @@ use crate::graphics::element::Element;
 // so we can compute the bounding box of the graphic
 // which could be useful later on
 pub struct Graphic {
-    elements: Vec<Element>,
+    elements: Box<[Element]>,
 }
 
 impl Graphic {
     pub fn from_vec(elements: Vec<Element>) -> Self {
         Self {
-            elements
+            elements: elements.into_boxed_slice(),
         }
     }
 }
@@ -19,7 +19,7 @@ impl Graphic {
 impl Default for Graphic {
     fn default() -> Self {
         Self {
-            elements: Vec::new(),
+            elements: Box::new([]),
         }
     }
 }

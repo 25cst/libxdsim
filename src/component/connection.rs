@@ -1,6 +1,6 @@
 use crate::{
     app_state::PropertiesContainer,
-    component::{connection_definition::ConnectionDefinition, connection_path::ConnectionPath},
+    component::{Type, connection_definition::ConnectionDefinition, connection_path::ConnectionPath},
     graphics::Graphic,
 };
 
@@ -25,13 +25,13 @@ pub trait Connection {
 
     /// Serialize connection into bytes
     /// macro will remove the &self from the argument list
-    fn serialize(&self, data: *const u8) -> Box<[u8]>;
+    fn serialize(&self) -> Box<[u8]>;
 }
 
 /// Details of a request to draw a `Connection`
-pub struct ConnectionDrawRequest {
+pub struct ConnectionDrawRequest<'a> {
     /// Path the connection takes
     pub path: ConnectionPath,
     /// Current value in the connection
-    pub data: *const (),
+    pub data: &'a dyn Type,
 }

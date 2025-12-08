@@ -35,3 +35,11 @@ pub struct ConnectionDrawRequest<'a> {
     /// Current value in the connection
     pub data: &'a dyn Type,
 }
+
+impl<'a> ConnectionDrawRequest<'a> {
+    pub fn get_data<T>(&self) -> &'a T {
+        let ptr: *const dyn Type = &*self.data;
+        let ptr: *const T = ptr as *const T;
+        unsafe { &*ptr }
+    }
+}

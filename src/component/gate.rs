@@ -1,3 +1,5 @@
+use std::mem::transmute;
+
 use crate::{
     app_state::PropertiesContainer,
     component::{Type, gate_definition::GateDefinition},
@@ -36,6 +38,14 @@ pub trait Gate {
 pub struct GateTickRequest<'a> {
     /// Inputs to the gate
     pub inputs: Box<[&'a dyn Type]>,
+}
+
+impl<'a> GateTickRequest<'a> {
+    pub fn get_input<T>(&self, index: u32) -> &'a T {
+        let ptr: *const dyn Type = &*self.inputs[index as usize];
+        let ptr: *const T = ptr as *const T;
+        unsafe { &*ptr }
+    }
 }
 
 /// A single gate draw request

@@ -1,4 +1,4 @@
-use crate::{register_conn_def, v0::graphics::Vec2};
+use crate::{register_gate_def, v0::graphics::Vec2};
 
 /// TODO: this will need to have a stable byte structure
 /// probably need to tag repr(C) or something
@@ -28,4 +28,4 @@ pub struct GateIOEntry {
     pub position: Vec2,
 }
 
-register_conn_def!(GateDefinitionV0, 0);
+register_gate_def!(GateDefinitionV0, 0);

@@ -4,7 +4,7 @@ mod style;
 pub use style::*;
 mod graphic;
 pub use graphic::*;
-mod common;
 mod colour;
+mod common;
 pub use colour::*;
 pub use common::*;

@@ -1,4 +1,4 @@
-use crate::graphics::element::Element;
+use crate::v0::graphics::element::Element;
 
 // TODO: perhaps use a builder style way to create a graphic, like
 // Graphic::default().line(...).circle(...)

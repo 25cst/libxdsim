@@ -1,5 +1,7 @@
+use crate::register_conn_def;
+
 /// Information for a Connection
-pub struct ConnectionDefinition {
+pub struct ConnectionDefinitionV0 {
     /// Definition schema version number
     pub version: u32,
 
@@ -10,3 +12,5 @@ pub struct ConnectionDefinition {
     /// filled in by macro
     pub identifier: (&'static str, u16, u16), // e.g. (package_name, semver major, semver minor)
 }
+
+register_conn_def!(ConnectionDefinitionV0, 0);

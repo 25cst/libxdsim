@@ -1,9 +1,6 @@
-use std::{
-    error::Error,
-    fmt::{Display, Write},
-};
+use std::{error::Error, fmt::Display};
 
-use crate::app_state::{Menu, MenuInputValue};
+use crate::v0::app_state::{Menu, MenuInputValue};
 
 pub trait PropertiesContainer {
     /// get the display layout of the menu

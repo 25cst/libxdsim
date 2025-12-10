@@ -1,12 +1,9 @@
-use crate::graphics::Vec2;
+use crate::{register_conn_def, v0::graphics::Vec2};
 
 /// TODO: this will need to have a stable byte structure
 /// probably need to tag repr(C) or something
 /// I need to read the nomicon
-pub struct GateDefinition {
-    /// Definition schema version number
-    pub version: u32,
-
+pub struct GateDefinitionV0 {
     /// The ordered input that the gate takes
     pub inputs: Box<[GateIOEntry]>,
     /// The ordered output that the gate produces
@@ -30,3 +27,5 @@ pub struct GateIOEntry {
     pub data_type: (&'static str, u16, u16), // e.g. (package_name, gate-name, semver major, semver minor)
     pub position: Vec2,
 }
+
+register_conn_def!(GateDefinitionV0, 0);

@@ -1,9 +1,6 @@
-use std::mem::transmute;
-
 use crate::{
-    app_state::PropertiesContainer,
-    component::{Type, gate_definition::GateDefinition},
-    graphics::*,
+    defs::GateDefinition,
+    v0::{app_state::PropertiesContainer, component::Type, graphics::*},
 };
 
 pub trait Gate {
@@ -20,7 +17,7 @@ pub trait Gate {
     // DEFINITION: Returns gate definition
     // This takes a self reference because the definition may depend on options (which is stored
     // as state)
-    fn definition(&self) -> GateDefinition;
+    fn definition(&self) -> Box<dyn GateDefinition>;
 
     /// Get the property container
     /// this is to be implemented by macro

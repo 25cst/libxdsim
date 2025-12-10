@@ -1,7 +1,10 @@
 use crate::{
-    app_state::PropertiesContainer,
-    component::{Type, connection_definition::ConnectionDefinition, connection_path::ConnectionPath},
-    graphics::Graphic,
+    defs::ConnectionDefinition,
+    v0::{
+        app_state::PropertiesContainer,
+        component::{Type, connection_path::ConnectionPath},
+        graphics::Graphic,
+    },
 };
 
 /// A connection that can carry a value
@@ -13,7 +16,7 @@ pub trait Connection {
     fn draw(&self, request: &ConnectionDrawRequest) -> Graphic;
 
     /// Returns connection definition. This may depend on options so takes `&self`.
-    fn definition(&self) -> ConnectionDefinition;
+    fn definition(&self) -> Box<dyn ConnectionDefinition>;
 
     /// Get the property container
     /// this is to be implemented by macro

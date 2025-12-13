@@ -4,6 +4,10 @@ use crate::register_package_def;
 pub struct PackageDefinitionV0 {
     pub ident: (&'static str, u16, u16, u16), // package name, semver major, semver minor, semver patch
     pub component_type: ComponentType,
+
+    pub authors: &'static [&'static str],
+    pub description: &'static str,
+    pub homepage: &'static str,
 }
 
 #[repr(C)]

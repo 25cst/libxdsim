@@ -1,13 +1,13 @@
 use crate::{
     defs::GateDefinition,
-    v0::{app_state::PropertiesContainer, component::Type, graphics::*},
+    v0::{app_state::PropertiesContainer, component::Data, graphics::*},
 };
 
 pub trait Gate {
     /// - &mut self: the gate is allowed to change its state when received an input
     /// - input: list of pointers to inputs in the order they are defined in definition()
     /// - output: list of pointers to outputs in the order they are defined in definition()
-    fn tick(&mut self, request: GateTickRequest) -> Box<[Box<dyn Type>]>;
+    fn tick(&mut self, request: GateTickRequest) -> Box<[Box<dyn Data>]>;
 
     /// Produce a graphic of the gate
     // request will be a reference, because the same gate will be drawn many times
@@ -35,12 +35,12 @@ pub trait Gate {
 #[repr(C)]
 pub struct GateTickRequest<'a> {
     /// Inputs to the gate
-    pub inputs: Box<[&'a dyn Type]>,
+    pub inputs: Box<[&'a dyn Data]>,
 }
 
 impl<'a> GateTickRequest<'a> {
     pub fn get_input<T>(&self, index: u32) -> &'a T {
-        let ptr: *const dyn Type = &*self.inputs[index as usize];
+        let ptr: *const dyn Data = &*self.inputs[index as usize];
         let ptr: *const T = ptr as *const T;
         unsafe { &*ptr }
     }

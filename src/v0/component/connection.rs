@@ -2,7 +2,7 @@ use crate::{
     defs::ConnectionDefinition,
     v0::{
         app_state::PropertiesContainer,
-        component::{Type, connection_path::ConnectionPath},
+        component::{Data, connection_path::ConnectionPath},
         graphics::Graphic,
     },
 };
@@ -37,12 +37,12 @@ pub struct ConnectionDrawRequest<'a> {
     /// Path the connection takes
     pub path: ConnectionPath,
     /// Current value in the connection
-    pub data: &'a dyn Type,
+    pub data: &'a dyn Data,
 }
 
 impl<'a> ConnectionDrawRequest<'a> {
     pub fn get_data<T>(&self) -> &'a T {
-        let ptr: *const dyn Type = &*self.data;
+        let ptr: *const dyn Data = &*self.data;
         let ptr: *const T = ptr as *const T;
         unsafe { &*ptr }
     }

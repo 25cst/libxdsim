@@ -1,4 +1,4 @@
-pub trait Type {
+pub trait Data {
     // Serialize Type into bytes
     fn serialize(&self) -> Box<[u8]>;
 

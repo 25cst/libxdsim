@@ -8,5 +8,5 @@ mod gate;
 pub use gate::*;
 mod gate_definition;
 pub use gate_definition::*;
-mod data_type;
-pub use data_type::*;
+mod data;
+pub use data::*;

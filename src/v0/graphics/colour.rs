@@ -1,5 +1,6 @@
 /// Enum representing the colour options available for gates
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy)]
+#[repr(C)]
 pub enum Colour {
     /// The primary colour of the gates (in a light theme, this would be black)
     Fg,

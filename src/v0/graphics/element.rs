@@ -1,5 +1,6 @@
 use crate::v0::graphics::{Vec2, style::*};
 
+#[repr(C)]
 pub enum Element {
     Line {
         points: Box<[Vec2]>,

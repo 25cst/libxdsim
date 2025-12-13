@@ -1,6 +1,7 @@
 use crate::register_conn_def;
 
 /// Information for a Connection
+#[repr(C)]
 pub struct ConnectionDefinitionV0 {
     /// Definition schema version number
     pub version: u32,

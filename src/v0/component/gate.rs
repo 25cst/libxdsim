@@ -32,6 +32,7 @@ pub trait Gate {
 }
 
 /// A single gate tick request
+#[repr(C)]
 pub struct GateTickRequest<'a> {
     /// Inputs to the gate
     pub inputs: Box<[&'a dyn Type]>,
@@ -46,6 +47,7 @@ impl<'a> GateTickRequest<'a> {
 }
 
 /// A single gate draw request
+#[repr(C)]
 pub struct GateDrawRequest {
     /// One of the four the gate is facing (rotation)
     pub direction: Direction,

@@ -4,6 +4,7 @@ use crate::v0::graphics::element::Element;
 // Graphic::default().line(...).circle(...)
 // so we can compute the bounding box of the graphic
 // which could be useful later on
+#[repr(C)]
 pub struct Graphic {
     elements: Box<[Element]>,
 }

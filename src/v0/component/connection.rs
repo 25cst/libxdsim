@@ -32,6 +32,7 @@ pub trait Connection {
 }
 
 /// Details of a request to draw a `Connection`
+#[repr(C)]
 pub struct ConnectionDrawRequest<'a> {
     /// Path the connection takes
     pub path: ConnectionPath,

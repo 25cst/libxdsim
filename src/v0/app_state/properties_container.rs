@@ -25,6 +25,7 @@ pub trait PropertiesContainer {
 }
 
 #[derive(Debug)]
+#[repr(C)]
 pub enum PropertiesContainerSetError {
     PropertyDoesNotExist,
     Invalid { reason: Box<str> },

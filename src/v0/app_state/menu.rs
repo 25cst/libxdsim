@@ -1,12 +1,15 @@
+#[repr(C)]
 pub struct Menu {
     pub items: Box<[MenuItem]>,
 }
 
+#[repr(C)]
 pub struct MenuItem {
     pub tooltip: Option<Box<str>>,
     pub item_type: MenuItemVariant,
 }
 
+#[repr(C)]
 pub enum MenuItemVariant {
     Foldable {
         title: Box<str>,
@@ -21,6 +24,7 @@ pub enum MenuItemVariant {
     },
 }
 
+#[repr(C)]
 pub enum MenuInput {
     String {
         style: MenuInputStringStyle,
@@ -40,6 +44,7 @@ pub enum MenuInput {
     },
 }
 
+#[repr(C)]
 pub enum MenuInputStringStyle {
     Inline {
         placeholder: Box<str>,
@@ -53,22 +58,26 @@ pub enum MenuInputStringStyle {
     },
 }
 
+#[repr(C)]
 pub enum MenuInputIntegerStyle {
     Slider,
     TextBox,
     SliderAndTextBox,
 }
 
+#[repr(C)]
 pub enum MenuInputFloatStyle {
     Slider,
     TextBox,
     SliderAndTextBox,
 }
 
+#[repr(C)]
 pub enum MenuInputBooleanStyle {
     CheckBox,
 }
 
+#[repr(C)]
 pub enum MenuInputValue {
     String(Box<str>),
     Integer(i64),
